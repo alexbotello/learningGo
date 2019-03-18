@@ -2,40 +2,52 @@ package main
 
 import "fmt"
 
-// Human is the interface that wraps the basic Speak method
-type Human interface {
-	Speak(string) string
+type human interface {
+	speak(string) string
 }
 
-// Engineer type that refers to a Human that's an engineer
-type Engineer struct {
+type engineer struct {
 	name string
 	age  int
 }
 
-func (e Engineer) Build() string {
+func (e engineer) build() string {
 	return fmt.Sprintf("%s is building cool new things", e.name)
 }
 
-func (e Engineer) Speak(phrase string) string {
+func (e engineer) speak(phrase string) string {
 	return fmt.Sprintf("%s has said: %s", e.name, phrase)
 }
 
-// Teacher type refers to a Human that's a teacher
-type Teacher struct {
+type teacher struct {
 	name string
 	age  int
 }
 
-func (t Teacher) Teach() string {
+func (t teacher) teach() string {
 	return fmt.Sprintf("%s is now teaching students", t.name)
 }
 
-func (t Teacher) Speak(phrase string) string {
+func (t teacher) speak(phrase string) string {
 	return fmt.Sprintf("%s has said: %s", t.name, phrase)
 }
 
-// TellJoke accepts a Human interface and returns a joke phrase
-func TellJoke(h Human) string {
-	return h.Speak("How much would could a woodchuck chuck if a woodchuck could chuck would?")
+func tellJoke(h human) string {
+	return h.speak("How much would could a woodchuck chuck if a woodchuck could chuck would?")
+}
+
+func main() {
+	billy := engineer{
+		name: "Billy",
+		age:  24,
+	}
+
+	susan := teacher{
+		name: "Susan",
+		age:  21,
+	}
+
+	fmt.Println(susan.teach())
+	fmt.Println(billy.build())
+	fmt.Println(tellJoke(billy))
 }
