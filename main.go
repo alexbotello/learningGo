@@ -1,9 +1,19 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
 func main() {
-	fmt.Println("Hello World")
+	billy := Engineer{
+		name: "Billy",
+		age:  24,
+	}
+
+	susan := Teacher{
+		name: "Susan",
+		age:  21,
+	}
+
+	fmt.Println(susan.Teach())
+	fmt.Println(billy.Build())
+	fmt.Println(TellJoke(billy))
 }
